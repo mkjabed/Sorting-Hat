@@ -1,5 +1,5 @@
 # Sorting Hat Quiz
-_Welcome to the Sorting Hat Quiz! _This Java application will help you discover which Hogwarts House you belong to based on your answers to a series of fun and thought-provoking questions. Whether you're a Gryffindor, Ravenclaw, Hufflepuff, or Slytherin, this quiz will guide you to your true house!
+_Welcome to the Sorting Hat Quiz!_ This Java application will help you discover which Hogwarts House you belong to based on your answers to a series of fun and thought-provoking questions. Whether you're a Gryffindor, Ravenclaw, Hufflepuff, or Slytherin, this quiz will guide you to your true house!
 
 **Features**
 1. 5 interactive questions with multiple choice answers
