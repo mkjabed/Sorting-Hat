@@ -23,5 +23,3 @@ Welcome to the **Hogwarts House Sorting Quiz** – a magical experience built us
 - **Custom images** for background and logo
 
 ---
-
-****
