@@ -1,4 +1,3 @@
-# Sorting Hat Quiz
 # 🧙 Sorting Hat Quiz - Java Swing Edition
 
 Welcome to the **Hogwarts House Sorting Quiz** – a magical experience built using **Java Swing**! Answer five mystical questions and find out whether you belong in **Gryffindor**, **Ravenclaw**, **Hufflepuff**, or **Slytherin**.
