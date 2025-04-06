@@ -1,11 +1,14 @@
 package com.housequiz;
 
-import java.awt.Color;
+import java.io.File;
+import javax.sound.sampled.*;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,277 +16,225 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-public class SortingHatQuiz{
-	static int G=0, R=0, H=0, S=0, Check=0;
-	
-	public static void main(String[] args) {
 
-		
-		
-	        JFrame frame = new JFrame();
-	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        frame.setSize(800, 800);
-	        frame.setLocationRelativeTo(null);
-	        frame.setLayout(null);
-	        frame.setTitle("Sorting Hat");
-	        
-	        JPanel panel = new JPanel();
-	        panel.setBackground(new Color(255, 247, 227)); 
-	        panel.setBounds(0, 0, 800, 800); 
-	        panel.setLayout(null); 
+import javax.swing.*;
+import java.awt.*;
 
-	        
-	        JLabel q1 = new JLabel("1. Dawn or Dusk?");
-	        q1.setFont(new Font("Arial", Font.BOLD, 20));
-	        q1.setBounds(5, 10, 200, 30);
-	        panel.add(q1);
+class BackgroundPanel extends JPanel {
+    Image backgroundImage;
+    Image logoImage;
 
-	        JRadioButton q1option1 = new JRadioButton("Dawn");
-	        q1option1.setFont(new Font("Arial", Font.BOLD, 20));
-	        q1option1.setBounds(5, 50, 200, 30);
-	        q1option1.setBackground(panel.getBackground());  
-	        q1option1.setOpaque(true);
-	        panel.add(q1option1);
+    public BackgroundPanel(String bgPath, String logoPath) {
+        backgroundImage = new ImageIcon(bgPath).getImage();
+        ImageIcon logoIcon = new ImageIcon(logoPath);
+        logoImage = logoIcon.getImage().getScaledInstance(220, 70, Image.SCALE_SMOOTH);
+    }
 
-	        JRadioButton q1option2 = new JRadioButton("Dusk");
-	        q1option2.setFont(new Font("Arial", Font.BOLD, 20));
-	        q1option2.setBounds(5, 80, 200, 30);
-	        q1option2.setBackground(panel.getBackground());  
-	        q1option2.setOpaque(true);
-	        panel.add(q1option2);
-	     
-
-	        ButtonGroup group1 = new ButtonGroup();
-	        group1.add(q1option1);
-	        group1.add(q1option2);
-	        
-	        JLabel q2 = new JLabel("2. Forest or River?");
-	        q2.setFont(new Font("Arial", Font.BOLD, 20));
-	        q2.setBounds(5, 120, 200, 30);
-	        q2.setBackground(panel.getBackground());  
-	        q2.setOpaque(true);
-	        panel.add(q2);
-
-	        JRadioButton q2option1 = new JRadioButton("Forest");
-	        q2option1.setFont(new Font("Arial", Font.BOLD, 20));
-	        q2option1.setBounds(5, 160, 200, 30);
-	        q2option1.setBackground(panel.getBackground());  
-	        q2option1.setOpaque(true);
-	        panel.add(q2option1);
-
-	        JRadioButton q2option2 = new JRadioButton("River");
-	        q2option2.setFont(new Font("Arial", Font.BOLD, 20));
-	        q2option2.setBounds(5, 190, 200, 30);
-	        q2option2.setBackground(panel.getBackground());  
-	        q2option2.setOpaque(true);
-	        panel.add(q2option2);
-
-	        ButtonGroup group2 = new ButtonGroup();
-	        group2.add(q2option1);
-	        group2.add(q2option2);
-	        
-	        JLabel q3 = new JLabel("3. Moon or Stars?");
-	        q3.setFont(new Font("Arial", Font.BOLD, 20));
-	        q3.setBounds(5, 230, 200, 30);
-	        q3.setBackground(panel.getBackground());  
-	        q3.setOpaque(true);
-	        panel.add(q3);
-
-	        JRadioButton q3option1 = new JRadioButton("Moon");
-	        q3option1.setFont(new Font("Arial", Font.BOLD, 20));
-	        q3option1.setBounds(5, 270, 200, 30);
-	        q3option1.setBackground(panel.getBackground());  
-	        q3option1.setOpaque(true);
-	        panel.add(q3option1);
-
-	        JRadioButton q3option2 = new JRadioButton("Stars");
-	        q3option2.setFont(new Font("Arial", Font.BOLD, 20));
-	        q3option2.setBounds(5, 300, 200, 30);
-	        q3option2.setBackground(panel.getBackground());  
-	        q3option2.setOpaque(true);
-	        panel.add(q3option2);
-
-	        ButtonGroup group3 = new ButtonGroup();
-	        group3.add(q3option1);
-	        group3.add(q3option2);
-	        
-	        JLabel q4 = new JLabel("4. Which of the following would you most hate people to call you?");
-	        q4.setFont(new Font("Arial", Font.BOLD, 20));
-	        q4.setBounds(5, 340, 800, 30);
-	        q4.setBackground(panel.getBackground());  
-	        q4.setOpaque(true);
-	        panel.add(q4);
-
-	        JRadioButton q4option1 = new JRadioButton("Ordinary");
-	        q4option1.setFont(new Font("Arial", Font.BOLD, 20));
-	        q4option1.setBounds(5, 370, 200, 30);
-	        q4option1.setBackground(panel.getBackground());  
-	        q4option1.setOpaque(true);
-	        panel.add(q4option1);
-
-	        JRadioButton q4option2 = new JRadioButton("Ignorant");
-	        q4option2.setFont(new Font("Arial", Font.BOLD, 20));
-	        q4option2.setBounds(5, 400, 200, 30);
-	        q4option2.setBackground(panel.getBackground());  
-	        q4option2.setOpaque(true);
-	        panel.add(q4option2);
-
-	        JRadioButton q4option3 = new JRadioButton("Cowardly");
-	        q4option3.setFont(new Font("Arial", Font.BOLD, 20));
-	        q4option3.setBounds(5, 430, 200, 30);
-	        q4option3.setBackground(panel.getBackground());  
-	        q4option3.setOpaque(true);
-	        panel.add(q4option3);
-
-	        JRadioButton q4option4 = new JRadioButton("Selfish");
-	        q4option4.setFont(new Font("Arial", Font.BOLD, 20));
-	        q4option4.setBounds(5, 460, 200, 30);
-	        q4option4.setBackground(panel.getBackground());  
-	        q4option4.setOpaque(true);
-	        panel.add(q4option4);
-	        
-	        ButtonGroup group4 = new ButtonGroup();
-	        group4.add(q4option1);
-	        group4.add(q4option2);
-	        group4.add(q4option3);
-	        group4.add(q4option4);
-	        
-	        JLabel q5 = new JLabel("5. How would you like to be known to history?");
-	        q5.setFont(new Font("Arial", Font.BOLD, 20));
-	        q5.setBounds(5, 500, 800, 30); 
-	        q5.setBackground(panel.getBackground());  
-	        q5.setOpaque(true);
-	        panel.add(q5);
-
-	        JRadioButton q5option1 = new JRadioButton("The Wise");
-	        q5option1.setFont(new Font("Arial", Font.BOLD, 20));
-	        q5option1.setBounds(5, 540, 300, 30);  
-	        q5option1.setBackground(panel.getBackground());  
-	        q5option1.setOpaque(true);
-	        panel.add(q5option1);
-
-	        JRadioButton q5option2 = new JRadioButton("The Good");
-	        q5option2.setFont(new Font("Arial", Font.BOLD, 20));
-	        q5option2.setBounds(5, 570, 300, 30);  
-	        q5option2.setBackground(panel.getBackground());  
-	        q5option2.setOpaque(true);
-	        panel.add(q5option2);
-
-	        JRadioButton q5option3 = new JRadioButton("The Great");
-	        q5option3.setFont(new Font("Arial", Font.BOLD, 20));
-	        q5option3.setBounds(5, 600, 300, 30);  
-	        q5option3.setBackground(panel.getBackground());  
-	        q5option3.setOpaque(true);
-	        panel.add(q5option3);
-
-	        JRadioButton q5option4 = new JRadioButton("The Bold");
-	        q5option4.setFont(new Font("Arial", Font.BOLD, 20));
-	        q5option4.setBounds(5, 630, 200, 30);  
-	        q5option4.setBackground(panel.getBackground());  
-	        q5option4.setOpaque(true);
-	        panel.add(q5option4);
-
-	        ButtonGroup group5 = new ButtonGroup();
-	        group5.add(q5option1);
-	        group5.add(q5option2);
-	        group5.add(q5option3);
-	        group5.add(q5option4);
-
-	        
-	        JButton Submit = new JButton("Check");
-	        Submit.setFont(new Font("Arial", Font.PLAIN, 18));
-	        Submit.setBounds(250, 700, 100, 30);
-	        panel.add(Submit);
-	        
-	        Submit.addActionListener(new ActionListener() {
-	            @Override
-	            public void actionPerformed(ActionEvent e) {
-	                if (q1option1.isSelected()) {
-	                    G += 1; R += 1; Check+=1;
-	                }
-	                if (q1option2.isSelected()) {
-	                    H += 1; S += 1; Check+=1;
-	                }
-	                if (q2option1.isSelected()) {
-	                    G += 1; R += 1; Check+=1;
-	                }
-	                if (q2option2.isSelected()) {
-	                    H += 1; S += 1; Check+=1;
-	                }
-	                if (q3option1.isSelected()) {
-	                    R += 1; S += 1; Check+=1;
-	                }
-	                if (q3option2.isSelected()) {
-	                    G += 1; H += 1; Check+=1;
-	                }
-	                if (q4option1.isSelected()) {
-	                    S += 1; Check+=1 ;
-	                }
-	                if (q4option2.isSelected()) {
-	                    R += 1; Check+=1 ;
-	                }
-	                if (q4option3.isSelected()) {
-	                    G += 1; Check+=1 ;
-	                }
-	                if (q4option4.isSelected()) {
-	                    H += 1; Check+=1 ;
-	                }
-	                
-	                if (q5option1.isSelected()) {
-	                    R += 1; Check+=1 ;
-	                }
-	                if (q5option2.isSelected()) {
-	                    H += 1; Check+=1 ;
-	                }
-	                if (q5option3.isSelected()) {
-	                    S += 1; Check+=1 ;
-	                }
-	                if (q5option4.isSelected()) {
-	                    G += 1; Check+=1 ;
-	                }
-	                
-	                int max = Math.max(Math.max(G, R), Math.max(H, S));
-	                
-	                if (Check<5) {
-	                    JOptionPane.showMessageDialog(frame, 
-	                        "Oops! The Sorting Hat is feeling a bit confused... \nYou must answer all the questions before it can sort you. ⚡",
-	                        "Confused :(", JOptionPane.INFORMATION_MESSAGE);
-	                } else {
-	                    JOptionPane.showMessageDialog(frame, 
-	                        max == G ? "You Are Gryffindor 🦁\nBrave, daring, and full of heart. You face challenges head-on and never back down!" :
-	                        max == R ? "You Are Ravenclaw 🦅\nSmart, creative, and always seeking knowledge. Your mind is your greatest strength." :
-	                        max == H ? "You Are Hufflepuff 🦡\nLoyal, kind, and hardworking. You value fairness and always support your friends." :
-	                                   "You Are Slytherin 🐍\nCunning, ambitious, and resourceful. You know how to get what you want and make things happen!",
-	                        	"Sorted!!!",JOptionPane.INFORMATION_MESSAGE);
-	                }
+    @Override
+	protected void paintComponent(Graphics g) {
+    	
+        g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        
+        int logoX = (getWidth() - 220) / 2;
+        int logoY = 20;
+        g.drawImage(logoImage, logoX, logoY, 220, 70, this); 
+    }
+}
 
 
+public class SortingHatQuiz {
+    static int G = 0, R = 0, H = 0, S = 0;
+    static int currentQuestion = 0;
 
-	            }
-	        });
+    static String[] questions = {
+    	    "Which trait do you value the most?",
+    	    "Which subject excites you the most?",
+    	    "What would you do if you saw someone being bullied?",
+    	    "Choose a magical pet:",
+    	    "Pick a magical item:"
+    	};
 
-	        JButton resetButton = new JButton("Reset");
-	        resetButton.setFont(new Font("Arial", Font.PLAIN, 18));
-	        resetButton.setBounds(450, 700, 100, 30);
-	        panel.add(resetButton);
+    	static String[][] answers = {
+    	    {"Bravery", "Wisdom", "Loyalty", "Ambition"},
+    	    {"Defense Against the Dark Arts", "Astronomy", "Herbology", "Potions"},
+    	    {"Stand up to the bully", "Outsmart them calmly", "Comfort the victim", "Use it to your advantage"},
+    	    {"Phoenix", "Owl", "Badger", "Snake"},
+    	    {"Invisibility Cloak", "Time-Turner", "Marauder’s Map", "Elder Wand"}
+    	};
 
-	        resetButton.addActionListener(new ActionListener() {
-	            @Override
-	            public void actionPerformed(ActionEvent e) {
-	                group1.clearSelection();
-	                group2.clearSelection();
-	                group3.clearSelection();
-	                group4.clearSelection();
-	                group5.clearSelection();
-	                Check = G = R = H = S = 0;
-	            }
-	        });
-
-	        
+    	static int[][] points = {
+    	    {3, 2, 1, 4},  // Q1
+    	    {3, 4, 2, 1},  // Q2
+    	    {4, 2, 3, 1},  // Q3
+    	    {3, 4, 2, 5},  // Q4
+    	    {3, 4, 2, 5}   // Q5
+    	};
 
 
-	        frame.setContentPane(panel); 
-	        frame.setVisible(true);
-	}
-	
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Sorting Hat");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        BackgroundPanel panel = new BackgroundPanel("assets/background.jpg", "assets/logo.png");
+        panel.setLayout(null);
+        frame.setContentPane(panel);
+
+        
+        
+        try {
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File("assets/music.wav"));
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.loop(Clip.LOOP_CONTINUOUSLY); 
+            clip.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+      
+        
+        
+        
+        JPanel questionCard = new JPanel();
+                
+        questionCard.setLayout(new BoxLayout(questionCard, BoxLayout.Y_AXIS)); //vertical top to bottom
+        questionCard.setOpaque(false);
+        questionCard.setBounds(250, 220, 1000, 500);
+        panel.add(questionCard);
+
+        JLabel questionLabel = new JLabel();
+        questionLabel.setFont(new Font("Serif", Font.BOLD, 34));
+
+        questionLabel.setOpaque(true);
+        questionLabel.setBackground(new Color(0, 0, 0, 60)); // Translucent black background for the question 
+
+        questionLabel.setForeground(Color.WHITE);
+        questionLabel.setAlignmentX(Component.CENTER_ALIGNMENT); //horizontal alignment
+        questionCard.add(questionLabel);
+        questionCard.add(Box.createRigidArea(new Dimension(0, 30))); //spaces
+
+        JRadioButton[] options = new JRadioButton[4];
+        ButtonGroup group = new ButtonGroup();
+
+//        try {
+//            Font hogwartsFont = Font.createFont(Font.TRUETYPE_FONT, new File("assets/font.TTF")).deriveFont(55f); // Adjust size
+//            questionLabel.setFont(hogwartsFont);
+//        } catch (Exception e) {
+//            e.printStackTrace(); // Handle exception if font loading fails
+//        }
+
+        
+        
+        for (int i = 0; i < 4; i++) {
+            options[i] = new JRadioButton();
+            options[i].setFont(new Font("Dialog", Font.BOLD, 22));
+            options[i].setForeground(Color.WHITE);
+            options[i].setOpaque(false);
+            
+            
+            options[i].setFocusPainted(false); //would show focus box
+            options[i].setAlignmentX(Component.CENTER_ALIGNMENT);
+            group.add(options[i]);
+            questionCard.add(options[i]);
+            questionCard.add(Box.createRigidArea(new Dimension(0, 15)));
+        }
+
+        JButton nextButton = new JButton("Next");
+        nextButton.setFont(new Font("SansSerif", Font.BOLD, 22));
+        nextButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        nextButton.setFocusPainted(false);
+        nextButton.setBackground(new Color(93, 63, 211));
+        nextButton.setForeground(Color.WHITE);
+        nextButton.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30)); //button inside padding
+        questionCard.add(Box.createRigidArea(new Dimension(0, 30)));
+        questionCard.add(nextButton);
+
+        JButton recheckButton = new JButton("Restart Quiz");
+        recheckButton.setFont(new Font("SansSerif", Font.BOLD, 22));
+        recheckButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        recheckButton.setFocusPainted(false);
+        recheckButton.setBackground(new Color(93, 63, 211));
+        recheckButton.setForeground(Color.WHITE);
+        recheckButton.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
+        recheckButton.setEnabled(false);  // Initially disabled
+        questionCard.add(Box.createRigidArea(new Dimension(0, 30)));
+        questionCard.add(recheckButton);
+        
+        
+        // Function to update the question and options
+        Runnable updateQuestion = () -> {
+            questionLabel.setText(questions[currentQuestion]);
+            for (int i = 0; i < 4; i++) {
+                options[i].setText(answers[currentQuestion][i]);
+                group.clearSelection();
+            }
+        };
+
+        // Initial setup
+        updateQuestion.run();
+
+        nextButton.addActionListener(e -> {
+            int selected = -1;
+            for (int i = 0; i < 4; i++) {
+                if (options[i].isSelected()) {
+                    selected = i;
+                    break;
+                }
+            }
+
+            if (selected == -1) {
+                JOptionPane.showMessageDialog(frame, "You are confusing the hat :(\nPlease select an option!", "Sorting Hat Confused !!", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            int[] housePoints = points[currentQuestion];
+            switch (selected) {
+                case 0 -> G += housePoints[0];
+                case 1 -> R += housePoints[1];
+                case 2 -> H += housePoints[2];
+                case 3 -> S += housePoints[3];
+            }
+
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                updateQuestion.run();
+            } else {
+                String house = getTopHouse();
+                JOptionPane.showMessageDialog(frame, "You've been sorted into... " + house + "!", "House Result", JOptionPane.INFORMATION_MESSAGE);
+                nextButton.setEnabled(false); // prevent more clicks
+                recheckButton.setEnabled(true);
+            }
+        });
+        
+        recheckButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                G = 0;
+                R = 0;
+                H = 0;
+                S = 0;
+                
+                currentQuestion = 0;
+
+                nextButton.setEnabled(true);
+                recheckButton.setEnabled(false);
+
+                updateQuestion.run();
+            }
+        });
+        
+        
+
+
+        frame.setVisible(true);
+    }
+
+    static String getTopHouse() {
+        int max = Math.max(Math.max(G, R), Math.max(H, S));
+        if (G == max) return "🦁 Gryffindor: Courage, bravery, and determination make you a true Gryffindor! \nYou face challenges head-on and never back down.";
+        else if (R == max) return "🦅 Ravenclaw: Intelligence, wisdom, and creativity define you as a Ravenclaw! \nYou value knowledge and always seek the truth.";
+        else if (H == max) return "🦡 Hufflepuff: Kindness, loyalty, and hard work are your guiding principles. \nYou always put others before yourself.";
+        else return "🐍 Slytherin: Ambition, cunning, and resourcefulness make you a Slytherin! \nYou know how to make your own path to success.";
+    }
+
 }
