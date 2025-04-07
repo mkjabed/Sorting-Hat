@@ -2,7 +2,7 @@
 
 Welcome to the **Hogwarts House Sorting Quiz** – a magical journey that reveals your true house in the wizarding world! ✨ Using Java Swing, this enchanted quiz will help you discover whether you're a brave Gryffindor 🦁, a wise Ravenclaw 🦅, a loyal Hufflepuff 🦡, or a cunning Slytherin 🐍.
 
-**Answer five mystical questions, and let the Sorting Hat decide your fate!**
+**Answer nine mystical questions, and let the Sorting Hat decide your fate!**
 
 ---
 
